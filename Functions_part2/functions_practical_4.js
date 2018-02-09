@@ -17,16 +17,6 @@ function multiple(z) {
 console.log(multiple([-3, 11, 5, 3.4, -8]));
 
 
-// 4.zadatak
+// 4.zadatak 
 
-function finding(t) {
-
-    var min;
-    for(var i = 0; i < t.length; i++ ) {
-        if(t[i] < 0 ) {
-            min = t[i];
-        }
-    }
-
-}
 
