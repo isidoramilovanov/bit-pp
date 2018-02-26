@@ -14,12 +14,14 @@
             return productId;
         })();
         this.price = price;
-        this.expirationDate = expirationDate;
-        this.getInfo = function () {
-            return this.id + ',' + this.name + ',' + this.price;
-        }
+        this.expirationDate = expirationDate
+        // this.getInfo = function () {
+        //     return this.id + ',' + this.name + ',' + this.price;
+        // }
     }
-
+    Product.prototype.getInfo = function (){
+        return this.id + ',' + this.name + ',' + this.price;
+    }
     var milk = new Product('milk', 105.99, new Date(2018, 5, 13));
     var chocolate = new Product('chocolate', 120.524, new Date(2019, 6, 13));
     var vine = new Product('vine', 1500, new Date(2019, 6, 13));
@@ -38,36 +40,67 @@
             avPrice = totalPrice / this.listOfProducts.length;
             return "Average price is " + avPrice.toFixed(3);
         };
-        this.getMostExpensive = function () {
-            var max = this.listOfProducts[0].price;
-            var position = 0;
-            var mostExpensiveProduct;
+        // this.getMostExpensive = function () {
+        //     var max = this.listOfProducts[0].price;
+        //     var position = 0;
+        //     var mostExpensiveProduct;
 
-            for (var i = 0; i < this.listOfProducts.length; i++) {
-                var product =  this.listOfProducts[i];
-                if (max < product.price) {
-                    max = product.price;
-                    position = i;
-                }
-            }
-            mostExpensiveProduct = this.listOfProducts[position].getInfo();
-            return "Most expensive product is " + mostExpensiveProduct;
-        }
-        this.addProduct = function (product) {
-            if (product.expirationDate > new Date()) {
-                this.listOfProducts.push(product);
-            }
-        }
-        this.totalBagPrice = function () {
-            var allPrice = 0;
+        //     for (var i = 0; i < this.listOfProducts.length; i++) {
+        //         var product =  this.listOfProducts[i];
+        //         if (max < product.price) {
+        //             max = product.price;
+        //             position = i;
+        //         }
+        //     }
+        //     mostExpensiveProduct = this.listOfProducts[position].getInfo();
+        //     return "Most expensive product is " + mostExpensiveProduct;
+        // }
+        // this.addProduct = function (product) {
+        //     if (product.expirationDate > new Date()) {
+        //         this.listOfProducts.push(product);
+        //     }
+        // }
+        // this.totalBagPrice = function () {
+        //     var allPrice = 0;
 
-            for (var i = 0; i < this.listOfProducts.length; i++) {
-                allPrice += this.listOfProducts[i].price;
+        //     for (var i = 0; i < this.listOfProducts.length; i++) {
+        //         allPrice += this.listOfProducts[i].price;
+        //     }
+        //     return allPrice;
+        // }
+    }
+
+
+    ShoppingBag.prototype.getMostExpensive = function(){
+        var max = this.listOfProducts[0].price;
+        var position = 0;
+        var mostExpensiveProduct;
+
+        for (var i = 0; i < this.listOfProducts.length; i++) {
+            var product =  this.listOfProducts[i];
+            if (max < product.price) {
+                max = product.price;
+                position = i;
             }
-            return allPrice;
+        }
+        mostExpensiveProduct = this.listOfProducts[position].getInfo();
+        return "Most expensive product is " + mostExpensiveProduct;
+    }
+
+    ShoppingBag.prototype.addProduct =  function (product) {
+        if (product.expirationDate > new Date()) {
+            this.listOfProducts.push(product);
         }
     }
 
+    ShoppingBag.prototype.totalBagPrice = function () {
+        var allPrice = 0;
+
+        for (var i = 0; i < this.listOfProducts.length; i++) {
+            allPrice += this.listOfProducts[i].price;
+        }
+        return allPrice;
+    }
 
     var shoppingBag = new ShoppingBag();
     shoppingBag.addProduct(milk);
@@ -98,6 +131,7 @@
     }
 
     console.log(checkoutAndBuy(shoppingBag, myCard));
+    console.log(milk);
 
 }
 )();
