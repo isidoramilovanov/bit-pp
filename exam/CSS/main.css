@@ -96,7 +96,7 @@ body {
 .exam-passed-percentage,
 .exam-failed-percentage {
     float: left;
-    width: 34px;
+    width: 50px;
     font-size: 11px;
     padding: 3px 0;
     margin-left: 10px;

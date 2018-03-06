@@ -18,7 +18,7 @@ var dataModule = (function () {
     }
 
     CreateStudent.prototype.getStudentData = function(){
-        var studentData = this.name + this.surname;
+        var studentData = this.name + ' ' + this.surname;
         return studentData;
     }
 
@@ -31,7 +31,7 @@ var dataModule = (function () {
     }
 
     CreateExam.prototype.getExamInfo = function() {
-        var examData = this.subject.getSubjectName()  + this.student.getStudentData();
+        var examData = this.subject.getSubjectName() + ' ' + this.student.getStudentData() + ' ' + this.grade ;
         return examData;
     }
 
@@ -40,6 +40,17 @@ var dataModule = (function () {
             return true;
         }
         return false;
+    }
+
+    function allInOne (subject, name, surname, grade){
+        var newSubject = new CreateSubject(subject);
+        var newStudent = new CreateStudent(name, surname);
+        var newExam = new CreateExam(newSubject, newStudent, grade);
+        return newExam;
+    }
+
+    return {
+        allInOne : allInOne
     }
 
 }) ();
