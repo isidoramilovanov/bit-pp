@@ -1,4 +1,6 @@
-function CreateMovie(name, length, genre) {
+class CreateMovie {
+
+    constructor(name, length, genre){
     this.movieName = name;
     this.movieLength = length;
     this.movieGenre = genre;
@@ -8,15 +10,17 @@ function CreateMovie(name, length, genre) {
     }) ();
 }
 
-
-CreateMovie.prototype.getData = function () {
+getData() {
     var ge = this.movieGenre.charAt(0).toUpperCase() + this.movieGenre.charAt(this.movieGenre.length - 1).toUpperCase();
     var movieData = this.movieName + ', ' + this.movieLength + 'min, ' + ge;
     return movieData;
 }
+}
 
 
-function Program(date) {
+class Program{
+
+    constructor(date) {
     this.date = date,
     this.listOfMovie = [],
     this.programId = (function (){
@@ -26,18 +30,18 @@ function Program(date) {
 };
 
 
-Program.prototype.totalNumberOfMovies = function () {
+totalNumberOfMovies() {
     return this.listOfMovie.length
 };
 
 
-Program.prototype.getData = function () {
+getData() {
     var date = this.date;
     var programLength = 0;
     var numberOfMovie = this.listOfMovie.length;
-    if(this.listOfMovie.length == 0) {
-    aboutMovies = 'Program to be announced';
-    }
+    // if(this.listOfMovie.length == 0) {
+    // aboutMovies = 'Program to be announced';
+    // }
     this.listOfMovie.forEach(function (element) {
         programLength += parseInt(element.movieLength);
     });
@@ -46,10 +50,10 @@ Program.prototype.getData = function () {
 };
 
 
-Program.prototype.addMovie = function (movie) {
+addMovie(movie) {
     var counter = 0;
     var totalLength = 0;
-    for (i = 0; i < this.listOfMovie.length; i++) {
+    for ( var i = 0; i < this.listOfMovie.length; i++) {
         if(movie.movieName == this.listOfMovie[i].movieName ) {
             return "Movie already in program"; 
         } 
@@ -64,3 +68,5 @@ Program.prototype.addMovie = function (movie) {
         return 'More then 8h of movies or more than 4 of same genre'
     }
 };
+
+}
